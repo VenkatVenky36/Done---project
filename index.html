@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Queen 👑</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        @keyframes messageGlow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+                border-color: rgba(255, 107, 157, 0.5);
+            }
+            50% { 
+                box-shadow: 0 0 60px rgba(255, 107, 157, 0.6);
+                border-color: rgba(255, 107, 157, 0.8);
+            }
+        }
+
+        /* 3D Cake Animation */
+        .birthday-cake {
+            font-size: 4rem;
+            margin: 30px 0;
+            position: relative;
+            animation: cakeSpin 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+
+        @keyframes cakeSpin {
+            0%, 100% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(180deg) scale(1.2); }
+        }
+
+        /* Particle System */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .particle {
+            position: absolute;
+            background: #ff6b9d;
+            border-radius: 50%;
+            animation: particleFloat 4s infinite ease-in-out;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Audio Visualizer Effect */
+        .audio-bars {
+            display: flex;
+            gap: 5px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 8px;
+            background: linear-gradient(to top, #ff6b9d, #ffd700);
+            border-radius: 4px;
+            animation: audioBar 1s infinite ease-in-out;
+        }
+
+        .bar:nth-child(1) { height: 20px; animation-delay: 0.1s; }
+        .bar:nth-child(2) { height: 40px; animation-delay: 0.2s; }
+        .bar:nth-child(3) { height: 60px; animation-delay: 0.3s; }
+        .bar:nth-child(4) { height: 80px; animation-delay: 0.4s; }
+        .bar:nth-child(5) { height: 60px; animation-delay: 0.5s; }
+        .bar:nth-child(6) { height: 40px; animation-delay: 0.6s; }
+        .bar:nth-child(7) { height: 20px; animation-delay: 0.7s; }
+
+        @keyframes audioBar {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.7; }
+            50% { transform: scaleY(1.5); opacity: 1; }
+        }
+
+        /* Emoji Rain */
+        .emoji-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 25px;
+            animation: emojiRain 5s infinite linear;
+        }
+
+        @keyframes emojiRain {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .birthday-title { font-size: 3rem; }
+            .photo-frame { width: 220px; height: 220px; }
+            .quote-text { font-size: 1.4rem; }
+            .love-message { font-size: 1.3rem; padding: 30px; }
+            .photo-gallery { gap: 15px; }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeOut 2s ease-out 3s forwards;
+        }
+
+        .loading-heart {
+            font-size: 4rem;
+            color: #ff6b9d;
+            animation: loadingPulse 1s infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; pointer-events: none; }
+        }
+    </style>
+</head>
+<body>
+    <!--Audio source-->
+    <audio src="./audio assests/achacham telugu andham song.mp3" autoplay loop >
+    </audio>
+    <div class="loading">
+        <div class="loading-heart">💖</div>
+    </div>
+    
+    <div class="custom-cursor"></div>
+    <div class="bg-animation"></div>
+    <div class="stars" id="stars"></div>
+    <div class="floating-elements" id="floating-elements"></div>
+    <div class="particles" id="particles"></div>
+    <div class="emoji-rain" id="emoji-rain"></div>
+    
+    <div class="container">
+        <h1 class="birthday-title" data-text="Happy Birthday My Queen! 👑">Happy Birthday My Queen! 👑</h1>
+        
+        <div class="photo-gallery">
+            <div class="photo-frame">
+                <img src="./img assests/left pic.jpg" alt="My Beautiful Love" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                <div class="photo-placeholder">
+                    📸 Your Most Beautiful Photo Here ✨
+                </div>
+            </div>
+            <div class="photo-frame">
+                <img src="./img assests/WhatsApp Image 2025-08-01 at 23.30.42_667c8161.jpg" alt="My Gorgeous Girl" style="width: 100%; height: 100%; object-fit: cover;"> -->
+                <div class="photo-placeholder">
+                    📸 Another Stunning Photo ✨
+                </div>
+            </div>
+        </div>
+        
+        <div class="birthday-cake">🎂</div>
+        <div class="audio-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+
+        
+        <div class="quotes-section">
+            <div class="quote-card">
+                <div class="quote-text">
+                    "You are the poetry my heart writes in the silence of the night, the dream that colors my reality with magic." 🌙
+                </div>
+                <div class="quote-author">- From Your Heart's Keeper</div>
+            </div>
+            
+            <div class="quote-card">
+                <div class="quote-text">
+                    "In a world full of ordinary, you are my extraordinary. In a lifetime of moments, you are my forever." ✨
+                </div>
+                <div class="quote-author">- Your Forever Love</div>
+            </div>
+            
+            <div class="quote-card">
+                <div class="quote-text">
+                    "Every sunrise is more beautiful because I know I'll spend another day loving you more than yesterday." 🌅
+                </div>
+                <div class="quote-author">- Your Devoted Heart</div>
+            </div>
+            
+            <div class="quote-card">
+                <div class="quote-text">
+                    "You don't just have my heart - you ARE my heart, beating with love, pulsing with passion, living with purpose." 💓
+                </div>
+                <div class="quote-author">- Your Soulmate</div>
+            </div>
+        </div>
+        
+        <div class="love-message">
+            My darling queen, today marks another year of your incredible existence, and I am beyond grateful to witness your light illuminating this world. 
+            You are not just beautiful on the outside - though you absolutely take my breath away - but your soul radiates a warmth that makes everything better. 
+            Your laugh is my favorite symphony, your smile is my daily sunrise, and your love is my greatest treasure. 
+            <br><br>
+            🌹 Happy Birthday to the woman who makes every day feel like a fairy tale! 🌹
+        </div>
+        
+        <div style="font-size: 2.5rem; margin: 40px 0;">
+            🌟 💎 👑 🦋 🌹 💝 🎭 ✨ 🎪 🎨 💫 🎊
+        </div>
+    </div>
+
+    <script>
+        // Custom cursor trail
+        let cursors = [];
+        
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.custom-cursor');
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Create trail
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+            
+            cursors.push(trail);
+            
+            setTimeout(() => {
+                trail.remove();
+                cursors = cursors.filter(c => c !== trail);
+            }, 500);
+        });
+
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create floating hearts and roses
+        function createFloatingElement() {
+            const container = document.getElementById('floating-elements');
+            const isHeart = Math.random() > 0.5;
+            const element = document.createElement('div');
+            
+            if (isHeart) {
+                element.className = 'floating-heart';
+                element.innerHTML = ['💖', '💕', '💗', '💘'][Math.floor(Math.random() * 4)];
+                element.style.color = ['#ff6b9d', '#ffd700', '#ff69b4', '#ff1493'][Math.floor(Math.random() * 4)];
+            } else {
+                element.className = 'floating-rose';
+                element.innerHTML = '🌹';
+            }
+            
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            container.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 10000);
+        }
+
+        // Create particles
+        function createParticle() {
+            const container = document.getElementById('particles');
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.width = Math.random() * 8 + 4 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            container.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }
+
+        // Create emoji rain
+        function createEmojiRain() {
+            const container = document.getElementById('emoji-rain');
+            const emojis = ['🎊', '🎉', '🎈', '🎁', '💝', '🌸', '🦋', '⭐', '💫', '🌟'];
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + '%';
+            emoji.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            container.appendChild(emoji);
+            
+            setTimeout(() => {
+                emoji.remove();
+            }, 7000);
+        }
+
+        // Interactive click effects
+        document.addEventListener('click', (e) => {
+            // Create explosion of hearts
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.position = 'fixed';
+                heart.style.left = e.clientX + 'px';
+                heart.style.top = e.clientY + 'px';
+                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                heart.style.color = ['#ff6b9d', '#ffd700', '#ff69b4'][Math.floor(Math.random() * 3)];
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+                
+                const angle = (i / 12) * Math.PI * 2;
+                const distance = Math.random() * 100 + 50;
+                const endX = e.clientX + Math.cos(angle) * distance;
+                const endY = e.clientY + Math.sin(angle) * distance;
+                
+                heart.animate([
+                    { transform: `translate(0, 0) scale(0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${endX - e.clientX}px, ${endY - e.clientY}px) scale(1.5) rotate(360deg)`, opacity: 0 }
+                ], {
+                    duration: 1500,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 1500);
+            }
+        });
+
+        // Special surprise effects
+        function createSurpriseEffect() {
+            const messages = [
+                "You light up my world like nobody else! ✨",
+                "My heart beats your name! 💓",
+                "You are my happily ever after! 👑",
+                "Every day with you is a gift! 🎁",
+                "You make my soul dance! 💃"
+            ];
+            
+            const message = document.createElement('div');
+            message.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+            message.style.cssText = `
+                position: fixed;
+                top: 20%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(45deg, rgba(255, 107, 157, 0.9), rgba(196, 69, 105, 0.9));
+                color: white;
+                padding: 20px 40px;
+                border-radius: 25px;
+                font-size: 1.8rem;
+                font-weight: bold;
+                text-align: center;
+                box-shadow: 0 0 50px rgba(255, 107, 157, 0.8);
+                z-index: 1000;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(10px);
+            `;
+            
+            document.body.appendChild(message);
+            
+            message.animate([
+                { transform: 'translateX(-50%) scale(0) rotate(-180deg)', opacity: 0 },
+                { transform: 'translateX(-50%) scale(1.1) rotate(0deg)', opacity: 1 },
+                { transform: 'translateX(-50%) scale(1) rotate(0deg)', opacity: 1 }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+            });
+            
+            setTimeout(() => {
+                message.animate([
+                    { transform: 'translateX(-50%) scale(1)', opacity: 1 },
+                    { transform: 'translateX(-50%) scale(0)', opacity: 0 }
+                ], {
+                    duration: 500,
+                    easing: 'ease-in'
+                });
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 500);
+            }, 4000);
+        }
+
+        // Initialize everything
+        createStars();
+        
+        // Start continuous animations
+        setInterval(createFloatingElement, 1200);
+        setInterval(createParticle, 800);
+        setInterval(createEmojiRain, 2000);
+        setInterval(createSurpriseEffect, 15000);
+
+        // Background music simulation with visual feedback
+        setInterval(() => {
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                bar.style.transform = `scaleY(${Math.random() * 2 + 0.5})`;
+                bar.style.background = `linear-gradient(to top, 
+                    hsl(${Math.random() * 60 + 300}, 70%, 60%), 
+                    hsl(${Math.random() * 60 + 40}, 80%, 70%))`;
+            });
+        }, 200);
+
+        // Photo frame hover effects
+        document.querySelectorAll('.photo-frame').forEach(frame => {
+            frame.addEventListener('mouseenter', () => {
+                createParticle();
+                createParticle();
+                createParticle();
+            });
+        });
+
+        // Birthday countdown effect
+        setTimeout(() => {
+            createSurpriseEffect();
+        }, 5000);
+    </script>
+</body>
+</html>
